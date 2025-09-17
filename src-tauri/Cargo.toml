@@ -1,9 +1,9 @@
 [package]
-name = "github-actions-test"
-version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
-edition = "2021"
+name = "tauri-sd-image-viewer"
+version = "2.1.0"
+description = "Tauri SD Image Viewer"
+authors = ["tenpaMk2"]
+edition = "2024"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -11,15 +11,48 @@ edition = "2021"
 # The `_lib` suffix may seem redundant but it is necessary
 # to make the lib name unique and wouldn't conflict with the bin name.
 # This seems to be only an issue on Windows, see https://github.com/rust-lang/cargo/issues/8519
-name = "github_actions_test_lib"
+name = "tauri_sd_image_viewer_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]
 tauri-build = { version = "2", features = [] }
 
 [dependencies]
-tauri = { version = "2", features = [] }
-tauri-plugin-opener = "2"
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
+tauri = { version = "2", features = ["image-ico", "image-png"] }
+tauri-plugin-dialog = "2"
+tauri-plugin-fs = "2"
+tauri-plugin-log = "2"
+tauri-plugin-os = "2"
+serde = { version = "1.0", features = ["derive"] }
+image = "0.25.6"
+tokio = { version = "1", features = ["full"] }
+webp = "0.3.0"
+sha2 = "0.10"
+hex = "0.4"
+png = "0.17"
+regex = "1.10"
+once_cell = "1.19"
+serde_json = "1.0.142"
+memmap2 = "0.9"
+crc32fast = "1.4"
+xmp_toolkit = "1.10.0"
+chrono = { version = "0.4", features = ["std"] }
+log = "0.4"
+
+# macOS クリップボード機能用の依存関係
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "0.6"
+objc2-foundation = "0.3"
+objc2-app-kit = "0.3"
+
+# Windows クリップボード機能用の依存関係
+[target.'cfg(target_os = "windows")'.dependencies]
+windows = { version = "0.58", features = [
+    "Win32_System_Ole", 
+    "Win32_System_Com", 
+    "Win32_UI_Shell", 
+    "Win32_Foundation",
+    "Win32_System_DataExchange",
+    "Win32_System_Memory"
+] }
 

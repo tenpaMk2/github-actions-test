@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+
+@plugin 'daisyui';
+
+/* macOSスクロールバーの安定化 */
+:root {
+	scrollbar-gutter: stable;
+}
+
+body {
+	scrollbar-gutter: stable;
+}
