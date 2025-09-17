@@ -2,5 +2,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    github_actions_test_lib::run()
+    tauri_sd_image_viewer_lib::run()
 }
